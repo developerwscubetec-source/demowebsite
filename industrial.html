@@ -1,0 +1,2333 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<meta name="description" content="NEXUS CNC — Advanced CNC Machines, Automation Solutions, Smart Factory Integration, and Industrial Technology for Modern Manufacturing.">
+<meta name="keywords" content="CNC machines, machining centers, industrial automation, smart factory, Industry 4.0, CNC milling, CNC turning">
+<title>NEXUS CNC | Engineering the Future of Precision Manufacturing</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link href="https://fonts.googleapis.com/css2?family=Bebas+Neue&family=Inter:wght@300;400;500;600;700&family=JetBrains+Mono:wght@400;500&display=swap" rel="stylesheet">
+<style>
+  :root {
+    --navy: #040d1a;
+    --navy-2: #071428;
+    --navy-3: #0a1d3a;
+    --blue: #0055ff;
+    --blue-2: #1166ff;
+    --cyan: #00c8ff;
+    --cyan-2: #00eaff;
+    --white: #ffffff;
+    --off-white: #e8eef8;
+    --gray: #8898b0;
+    --gray-2: #b8c6d8;
+    --steel: #1a2840;
+    --steel-2: #243350;
+    --glass: rgba(255,255,255,0.04);
+    --glass-border: rgba(255,255,255,0.09);
+    --accent-glow: rgba(0,200,255,0.18);
+    --font-display: 'Bebas Neue', sans-serif;
+    --font-body: 'Inter', sans-serif;
+    --font-mono: 'JetBrains Mono', monospace;
+  }
+
+  *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+
+  html { scroll-behavior: smooth; font-size: 16px; }
+
+  body {
+    font-family: var(--font-body);
+    background: var(--navy);
+    color: var(--white);
+    overflow-x: hidden;
+    -webkit-font-smoothing: antialiased;
+  }
+
+  /* ─── SCROLLBAR ─── */
+  ::-webkit-scrollbar { width: 4px; }
+  ::-webkit-scrollbar-track { background: var(--navy); }
+  ::-webkit-scrollbar-thumb { background: var(--blue); border-radius: 2px; }
+
+  /* ─── CURSOR GLOW ─── */
+  .cursor-glow {
+    width: 300px; height: 300px;
+    background: radial-gradient(circle, rgba(0,85,255,0.12) 0%, transparent 70%);
+    position: fixed; pointer-events: none; z-index: 9999;
+    transform: translate(-50%,-50%);
+    transition: opacity 0.3s;
+  }
+
+  /* ─── NAV ─── */
+  nav {
+    position: fixed; top: 0; left: 0; right: 0; z-index: 1000;
+    padding: 0 5%;
+    backdrop-filter: blur(20px);
+    background: rgba(4,13,26,0.85);
+    border-bottom: 1px solid var(--glass-border);
+    transition: all 0.4s ease;
+  }
+
+  nav.scrolled {
+    background: rgba(4,13,26,0.97);
+    box-shadow: 0 4px 40px rgba(0,0,0,0.6);
+  }
+
+  .nav-inner {
+    max-width: 1600px; margin: 0 auto;
+    display: flex; align-items: center; justify-content: space-between;
+    height: 72px;
+  }
+
+  .logo {
+    display: flex; align-items: center; gap: 10px;
+    text-decoration: none;
+  }
+
+  .logo-mark {
+    width: 36px; height: 36px;
+    background: linear-gradient(135deg, var(--blue), var(--cyan));
+    clip-path: polygon(50% 0%, 100% 25%, 100% 75%, 50% 100%, 0% 75%, 0% 25%);
+    display: flex; align-items: center; justify-content: center;
+    position: relative;
+  }
+
+  .logo-mark::after {
+    content: '';
+    width: 16px; height: 16px;
+    background: var(--navy);
+    clip-path: polygon(50% 0%, 100% 25%, 100% 75%, 50% 100%, 0% 75%, 0% 25%);
+  }
+
+  .logo-text {
+    font-family: var(--font-display);
+    font-size: 1.8rem;
+    letter-spacing: 0.12em;
+    color: var(--white);
+  }
+
+  .logo-sub {
+    font-family: var(--font-mono);
+    font-size: 0.55rem;
+    color: var(--cyan);
+    letter-spacing: 0.25em;
+    display: block;
+    margin-top: -4px;
+    text-transform: uppercase;
+  }
+
+  .nav-links {
+    display: flex; align-items: center; gap: 2px;
+    list-style: none;
+  }
+
+  .nav-links a {
+    text-decoration: none; color: var(--gray-2);
+    font-size: 0.8rem; font-weight: 500;
+    letter-spacing: 0.06em; text-transform: uppercase;
+    padding: 8px 14px; border-radius: 4px;
+    transition: all 0.2s;
+    position: relative;
+  }
+
+  .nav-links a::after {
+    content: '';
+    position: absolute; bottom: 4px; left: 50%; right: 50%;
+    height: 1px; background: var(--cyan);
+    transition: all 0.2s;
+  }
+
+  .nav-links a:hover { color: var(--white); }
+  .nav-links a:hover::after { left: 14px; right: 14px; }
+
+  .nav-cta {
+    background: var(--blue);
+    color: var(--white) !important;
+    padding: 9px 22px !important;
+    border-radius: 4px !important;
+    transition: all 0.2s !important;
+    box-shadow: 0 0 20px rgba(0,85,255,0.3);
+  }
+  .nav-cta:hover { background: var(--blue-2) !important; box-shadow: 0 0 30px rgba(0,85,255,0.5) !important; }
+  .nav-cta::after { display: none !important; }
+
+  .hamburger {
+    display: none; flex-direction: column; gap: 5px;
+    cursor: pointer; background: none; border: none; padding: 4px;
+  }
+  .hamburger span {
+    width: 24px; height: 2px; background: var(--white);
+    transition: all 0.3s; display: block;
+  }
+
+  .mobile-menu {
+    display: none; position: fixed; top: 72px; left: 0; right: 0;
+    background: rgba(4,13,26,0.98); backdrop-filter: blur(20px);
+    padding: 24px 5%; z-index: 999;
+    border-bottom: 1px solid var(--glass-border);
+  }
+
+  .mobile-menu.open { display: block; }
+  .mobile-menu a {
+    display: block; text-decoration: none; color: var(--gray-2);
+    font-size: 0.9rem; font-weight: 500; letter-spacing: 0.06em;
+    text-transform: uppercase; padding: 14px 0;
+    border-bottom: 1px solid var(--glass-border);
+    transition: color 0.2s;
+  }
+  .mobile-menu a:hover { color: var(--cyan); }
+
+  /* ─── HERO ─── */
+  #hero {
+    position: relative; min-height: 100vh;
+    display: flex; align-items: center;
+    overflow: hidden;
+  }
+
+  .hero-video-bg {
+    position: absolute; inset: 0; z-index: 0;
+    background:
+      radial-gradient(ellipse 120% 80% at 60% 40%, rgba(0,85,255,0.18) 0%, transparent 60%),
+      radial-gradient(ellipse 80% 60% at 20% 80%, rgba(0,200,255,0.08) 0%, transparent 50%),
+      linear-gradient(160deg, #040d1a 0%, #071428 40%, #0a1230 100%);
+  }
+
+  /* Animated grid */
+  .hero-grid {
+    position: absolute; inset: 0; z-index: 1;
+    background-image:
+      linear-gradient(rgba(0,85,255,0.06) 1px, transparent 1px),
+      linear-gradient(90deg, rgba(0,85,255,0.06) 1px, transparent 1px);
+    background-size: 60px 60px;
+    animation: gridMove 20s linear infinite;
+  }
+
+  @keyframes gridMove {
+    0% { transform: translateY(0); }
+    100% { transform: translateY(60px); }
+  }
+
+  /* Floating particles */
+  .particles {
+    position: absolute; inset: 0; z-index: 2; overflow: hidden;
+  }
+
+  .particle {
+    position: absolute; width: 2px; height: 2px;
+    background: var(--cyan); border-radius: 50%;
+    animation: float var(--dur, 8s) linear infinite;
+    opacity: 0;
+  }
+
+  @keyframes float {
+    0% { transform: translateY(100vh) translateX(0); opacity: 0; }
+    10% { opacity: 0.8; }
+    90% { opacity: 0.4; }
+    100% { transform: translateY(-10vh) translateX(var(--drift, 20px)); opacity: 0; }
+  }
+
+  .hero-content {
+    position: relative; z-index: 10;
+    max-width: 1600px; margin: 0 auto;
+    padding: 0 5%; padding-top: 120px;
+    display: grid; grid-template-columns: 1fr 420px; gap: 80px;
+    align-items: center; width: 100%;
+  }
+
+  .hero-eyebrow {
+    display: inline-flex; align-items: center; gap: 10px;
+    font-family: var(--font-mono);
+    font-size: 0.72rem; color: var(--cyan);
+    letter-spacing: 0.25em; text-transform: uppercase;
+    margin-bottom: 28px;
+  }
+
+  .hero-eyebrow::before {
+    content: '';
+    width: 32px; height: 1px;
+    background: var(--cyan);
+  }
+
+  h1 {
+    font-family: var(--font-display);
+    font-size: clamp(3.2rem, 7vw, 7rem);
+    line-height: 0.92;
+    letter-spacing: 0.02em;
+    color: var(--white);
+    margin-bottom: 28px;
+  }
+
+  h1 span {
+    background: linear-gradient(90deg, var(--cyan), var(--blue-2));
+    -webkit-background-clip: text;
+    -webkit-text-fill-color: transparent;
+    background-clip: text;
+  }
+
+  .hero-sub {
+    font-size: 1.05rem;
+    color: var(--gray-2);
+    line-height: 1.75;
+    max-width: 580px;
+    margin-bottom: 44px;
+    font-weight: 400;
+  }
+
+  .hero-btns {
+    display: flex; gap: 16px; flex-wrap: wrap;
+  }
+
+  .btn-primary {
+    display: inline-flex; align-items: center; gap: 10px;
+    background: linear-gradient(135deg, var(--blue), #003fcc);
+    color: var(--white);
+    padding: 16px 36px; border-radius: 4px;
+    font-size: 0.85rem; font-weight: 600;
+    letter-spacing: 0.1em; text-transform: uppercase;
+    text-decoration: none;
+    box-shadow: 0 0 40px rgba(0,85,255,0.4), inset 0 1px 0 rgba(255,255,255,0.1);
+    transition: all 0.3s;
+    position: relative; overflow: hidden;
+  }
+
+  .btn-primary::before {
+    content: '';
+    position: absolute; inset: 0;
+    background: linear-gradient(135deg, rgba(255,255,255,0.12), transparent);
+    opacity: 0; transition: opacity 0.3s;
+  }
+
+  .btn-primary:hover { box-shadow: 0 0 60px rgba(0,85,255,0.6), inset 0 1px 0 rgba(255,255,255,0.1); transform: translateY(-2px); }
+  .btn-primary:hover::before { opacity: 1; }
+
+  .btn-secondary {
+    display: inline-flex; align-items: center; gap: 10px;
+    background: transparent;
+    color: var(--white);
+    padding: 16px 36px; border-radius: 4px;
+    font-size: 0.85rem; font-weight: 600;
+    letter-spacing: 0.1em; text-transform: uppercase;
+    text-decoration: none;
+    border: 1px solid rgba(255,255,255,0.2);
+    transition: all 0.3s;
+  }
+
+  .btn-secondary:hover { border-color: var(--cyan); color: var(--cyan); background: rgba(0,200,255,0.05); }
+
+  /* Hero Stats Panel */
+  .hero-stats {
+    background: rgba(255,255,255,0.03);
+    border: 1px solid var(--glass-border);
+    border-radius: 12px;
+    padding: 36px;
+    backdrop-filter: blur(20px);
+    position: relative;
+  }
+
+  .hero-stats::before {
+    content: '';
+    position: absolute; top: 0; left: 40px; right: 40px; height: 1px;
+    background: linear-gradient(90deg, transparent, var(--cyan), transparent);
+  }
+
+  .stat-item {
+    padding: 24px 0;
+    border-bottom: 1px solid var(--glass-border);
+  }
+
+  .stat-item:last-child { border-bottom: none; }
+
+  .stat-num {
+    font-family: var(--font-display);
+    font-size: 3.2rem;
+    line-height: 1;
+    background: linear-gradient(90deg, var(--white), var(--cyan));
+    -webkit-background-clip: text;
+    -webkit-text-fill-color: transparent;
+    background-clip: text;
+  }
+
+  .stat-label {
+    font-family: var(--font-mono);
+    font-size: 0.7rem;
+    color: var(--gray);
+    letter-spacing: 0.2em;
+    text-transform: uppercase;
+    margin-top: 6px;
+  }
+
+  /* Scroll indicator */
+  .scroll-hint {
+    position: absolute; bottom: 40px; left: 50%;
+    transform: translateX(-50%);
+    z-index: 10;
+    display: flex; flex-direction: column; align-items: center; gap: 8px;
+    color: var(--gray);
+    font-family: var(--font-mono); font-size: 0.65rem; letter-spacing: 0.2em;
+    text-transform: uppercase; text-decoration: none;
+    animation: bounce 2s ease-in-out infinite;
+  }
+
+  @keyframes bounce {
+    0%, 100% { transform: translateX(-50%) translateY(0); }
+    50% { transform: translateX(-50%) translateY(8px); }
+  }
+
+  .scroll-line {
+    width: 1px; height: 50px;
+    background: linear-gradient(180deg, transparent, var(--cyan));
+  }
+
+  /* ─── SECTION BASE ─── */
+  section { padding: 120px 5%; }
+  .container { max-width: 1600px; margin: 0 auto; }
+
+  .section-label {
+    font-family: var(--font-mono);
+    font-size: 0.7rem; color: var(--cyan);
+    letter-spacing: 0.3em; text-transform: uppercase;
+    display: flex; align-items: center; gap: 12px;
+    margin-bottom: 20px;
+  }
+
+  .section-label::before {
+    content: '';
+    width: 28px; height: 1px; background: var(--cyan);
+  }
+
+  h2 {
+    font-family: var(--font-display);
+    font-size: clamp(2.4rem, 5vw, 4.5rem);
+    line-height: 0.95;
+    letter-spacing: 0.02em;
+    margin-bottom: 20px;
+  }
+
+  .section-sub {
+    color: var(--gray-2);
+    font-size: 1rem;
+    line-height: 1.8;
+    max-width: 600px;
+  }
+
+  /* ─── PRODUCTS ─── */
+  #products { background: var(--navy-2); }
+
+  .products-header {
+    display: grid; grid-template-columns: 1fr 1fr; gap: 60px;
+    align-items: end; margin-bottom: 72px;
+  }
+
+  .products-grid {
+    display: grid;
+    grid-template-columns: repeat(4, 1fr);
+    gap: 1px;
+    background: var(--glass-border);
+    border: 1px solid var(--glass-border);
+    border-radius: 12px;
+    overflow: hidden;
+  }
+
+  .product-card {
+    background: var(--steel);
+    padding: 36px 28px;
+    position: relative;
+    cursor: pointer;
+    transition: all 0.3s;
+    overflow: hidden;
+    display: flex; flex-direction: column;
+  }
+
+  .product-card::before {
+    content: '';
+    position: absolute; inset: 0;
+    background: linear-gradient(135deg, rgba(0,85,255,0.08), transparent);
+    opacity: 0; transition: opacity 0.3s;
+  }
+
+  .product-card::after {
+    content: '';
+    position: absolute; bottom: 0; left: 0; right: 0; height: 2px;
+    background: linear-gradient(90deg, var(--blue), var(--cyan));
+    transform: scaleX(0); transition: transform 0.3s;
+    transform-origin: left;
+  }
+
+  .product-card:hover { background: var(--steel-2); transform: translateY(-4px); }
+  .product-card:hover::before { opacity: 1; }
+  .product-card:hover::after { transform: scaleX(1); }
+
+  .product-icon {
+    width: 52px; height: 52px; margin-bottom: 20px;
+    background: rgba(0,85,255,0.12);
+    border: 1px solid rgba(0,85,255,0.25);
+    border-radius: 8px;
+    display: flex; align-items: center; justify-content: center;
+    font-size: 1.4rem;
+    transition: all 0.3s;
+  }
+
+  .product-card:hover .product-icon {
+    background: rgba(0,200,255,0.15);
+    border-color: var(--cyan);
+    box-shadow: 0 0 20px rgba(0,200,255,0.2);
+  }
+
+  .product-card h3 {
+    font-size: 0.95rem; font-weight: 700;
+    letter-spacing: 0.03em; margin-bottom: 10px;
+  }
+
+  .product-card p {
+    font-size: 0.8rem; color: var(--gray);
+    line-height: 1.65; margin-bottom: 24px; flex: 1;
+  }
+
+  .learn-more {
+    display: inline-flex; align-items: center; gap: 8px;
+    font-family: var(--font-mono); font-size: 0.7rem;
+    color: var(--cyan); letter-spacing: 0.15em; text-transform: uppercase;
+    text-decoration: none; font-weight: 500;
+    transition: gap 0.2s;
+  }
+
+  .learn-more:hover { gap: 12px; }
+
+  /* ─── INDUSTRIES ─── */
+  #industries { background: var(--navy); }
+
+  .industries-grid {
+    display: grid;
+    grid-template-columns: repeat(8, 1fr);
+    gap: 2px;
+    margin-top: 64px;
+  }
+
+  .industry-item {
+    background: var(--steel);
+    aspect-ratio: 1;
+    display: flex; flex-direction: column;
+    align-items: center; justify-content: center;
+    gap: 12px; padding: 20px;
+    cursor: pointer; transition: all 0.3s;
+    position: relative; overflow: hidden;
+    border-radius: 4px;
+  }
+
+  .industry-item::after {
+    content: '';
+    position: absolute; inset: 0;
+    background: linear-gradient(135deg, rgba(0,85,255,0.2), rgba(0,200,255,0.1));
+    opacity: 0; transition: opacity 0.3s;
+  }
+
+  .industry-item:hover { transform: scale(1.05); z-index: 2; }
+  .industry-item:hover::after { opacity: 1; }
+
+  .industry-icon { font-size: 1.8rem; position: relative; z-index: 1; }
+
+  .industry-name {
+    font-family: var(--font-mono); font-size: 0.6rem;
+    color: var(--gray-2); letter-spacing: 0.15em;
+    text-transform: uppercase; text-align: center;
+    position: relative; z-index: 1;
+  }
+
+  /* ─── SMART MFG ─── */
+  #smart { background: var(--navy-2); }
+
+  .smart-grid {
+    display: grid; grid-template-columns: 1fr 1fr;
+    gap: 80px; align-items: center;
+    margin-top: 72px;
+  }
+
+  .smart-visual {
+    position: relative;
+    aspect-ratio: 1;
+    background: var(--steel);
+    border-radius: 12px;
+    border: 1px solid var(--glass-border);
+    display: flex; align-items: center; justify-content: center;
+    overflow: hidden;
+  }
+
+  /* Animated circuit board */
+  .circuit-svg {
+    width: 100%; height: 100%; opacity: 0.6;
+  }
+
+  .circuit-path {
+    stroke-dasharray: 1000;
+    stroke-dashoffset: 1000;
+    animation: drawPath 3s ease forwards;
+  }
+
+  .circuit-path:nth-child(2) { animation-delay: 0.5s; }
+  .circuit-path:nth-child(3) { animation-delay: 1s; }
+  .circuit-path:nth-child(4) { animation-delay: 1.5s; }
+
+  @keyframes drawPath {
+    to { stroke-dashoffset: 0; }
+  }
+
+  .center-ring {
+    position: absolute;
+    width: 120px; height: 120px;
+    border: 2px solid var(--cyan);
+    border-radius: 50%;
+    display: flex; align-items: center; justify-content: center;
+    animation: spin 8s linear infinite;
+  }
+
+  .center-ring::before {
+    content: '';
+    position: absolute;
+    width: 90%;height: 90%;
+    border: 1px solid rgba(0,200,255,0.3);
+    border-radius: 50%;
+    border-top-color: var(--blue);
+    animation: spin 4s linear infinite reverse;
+  }
+
+  .center-dot {
+    width: 30px; height: 30px;
+    background: radial-gradient(circle, var(--cyan), var(--blue));
+    border-radius: 50%;
+    box-shadow: 0 0 30px rgba(0,200,255,0.6);
+  }
+
+  @keyframes spin { to { transform: rotate(360deg); } }
+
+  .orbit-dot {
+    position: absolute;
+    width: 8px; height: 8px;
+    background: var(--cyan);
+    border-radius: 50%;
+    box-shadow: 0 0 12px var(--cyan);
+  }
+
+  .tech-tags {
+    position: absolute; bottom: 0; left: 0; right: 0;
+    display: flex; flex-wrap: wrap; gap: 8px; padding: 24px;
+    background: linear-gradient(to top, rgba(10,18,48,0.9), transparent);
+  }
+
+  .tech-tag {
+    font-family: var(--font-mono); font-size: 0.65rem;
+    color: var(--cyan); background: rgba(0,200,255,0.08);
+    border: 1px solid rgba(0,200,255,0.2);
+    padding: 5px 10px; border-radius: 2px;
+    letter-spacing: 0.1em; text-transform: uppercase;
+  }
+
+  .smart-features {
+    display: grid; grid-template-columns: 1fr 1fr;
+    gap: 20px;
+  }
+
+  .smart-feat {
+    background: var(--glass);
+    border: 1px solid var(--glass-border);
+    border-radius: 8px; padding: 24px;
+    transition: all 0.3s;
+    position: relative; overflow: hidden;
+  }
+
+  .smart-feat::before {
+    content: '';
+    position: absolute; top: 0; left: 0; right: 0; height: 2px;
+    background: linear-gradient(90deg, var(--blue), var(--cyan));
+    transform: scaleX(0); transition: transform 0.3s; transform-origin: left;
+  }
+
+  .smart-feat:hover::before { transform: scaleX(1); }
+  .smart-feat:hover { border-color: rgba(0,200,255,0.2); background: rgba(0,85,255,0.06); }
+
+  .feat-icon { font-size: 1.5rem; margin-bottom: 12px; }
+  .feat-title { font-size: 0.88rem; font-weight: 700; margin-bottom: 6px; }
+  .feat-desc { font-size: 0.78rem; color: var(--gray); line-height: 1.6; }
+
+  /* ─── WHY US ─── */
+  #why { background: var(--navy); }
+
+  .why-grid {
+    display: grid; grid-template-columns: repeat(4, 1fr);
+    gap: 2px; margin-top: 72px;
+    background: var(--glass-border); border-radius: 12px; overflow: hidden;
+    border: 1px solid var(--glass-border);
+  }
+
+  .why-card {
+    background: var(--steel); padding: 40px 28px;
+    position: relative; transition: all 0.3s; cursor: default;
+  }
+
+  .why-card:hover { background: var(--steel-2); }
+
+  .why-num {
+    font-family: var(--font-display); font-size: 5rem;
+    color: rgba(0,85,255,0.12); line-height: 1;
+    position: absolute; top: 16px; right: 20px;
+    transition: color 0.3s;
+  }
+
+  .why-card:hover .why-num { color: rgba(0,200,255,0.15); }
+
+  .why-icon { font-size: 1.8rem; margin-bottom: 16px; }
+  .why-title { font-size: 0.95rem; font-weight: 700; margin-bottom: 10px; }
+  .why-desc { font-size: 0.78rem; color: var(--gray); line-height: 1.65; }
+
+  /* ─── TIMELINE ─── */
+  #timeline { background: var(--navy-2); overflow: hidden; }
+
+  .timeline-track {
+    position: relative; margin-top: 72px;
+    display: flex; gap: 0;
+    overflow-x: auto; padding-bottom: 40px;
+    scroll-snap-type: x mandatory;
+    scrollbar-width: none;
+  }
+
+  .timeline-track::-webkit-scrollbar { display: none; }
+
+  .timeline-line {
+    position: absolute; top: 28px; left: 0; right: 0; height: 1px;
+    background: var(--glass-border);
+  }
+
+  .timeline-line-fill {
+    height: 100%; width: 65%;
+    background: linear-gradient(90deg, var(--blue), var(--cyan));
+  }
+
+  .milestone {
+    min-width: 240px; flex: 0 0 240px;
+    scroll-snap-align: start;
+    position: relative; padding-top: 60px;
+    padding-right: 40px;
+    opacity: 0.5; transition: opacity 0.3s;
+  }
+
+  .milestone.active { opacity: 1; }
+
+  .milestone-dot {
+    position: absolute; top: 20px; left: 0;
+    width: 16px; height: 16px; border-radius: 50%;
+    background: var(--steel-2);
+    border: 2px solid var(--gray);
+    transition: all 0.3s;
+  }
+
+  .milestone.active .milestone-dot {
+    background: var(--cyan);
+    border-color: var(--cyan);
+    box-shadow: 0 0 20px rgba(0,200,255,0.5);
+  }
+
+  .milestone-year {
+    font-family: var(--font-mono); font-size: 0.7rem;
+    color: var(--cyan); letter-spacing: 0.15em;
+    margin-bottom: 10px;
+  }
+
+  .milestone-title {
+    font-size: 0.95rem; font-weight: 700; margin-bottom: 8px;
+  }
+
+  .milestone-desc {
+    font-size: 0.78rem; color: var(--gray); line-height: 1.6;
+  }
+
+  /* ─── MACHINES SLIDER ─── */
+  #machines { background: var(--navy); }
+
+  .machines-slider {
+    display: grid; grid-template-columns: repeat(3, 1fr);
+    gap: 24px; margin-top: 72px;
+  }
+
+  .machine-card {
+    background: var(--steel);
+    border: 1px solid var(--glass-border);
+    border-radius: 12px; overflow: hidden;
+    transition: all 0.4s; position: relative;
+  }
+
+  .machine-card:hover {
+    transform: translateY(-8px);
+    border-color: rgba(0,200,255,0.3);
+    box-shadow: 0 40px 80px rgba(0,0,0,0.5), 0 0 40px rgba(0,85,255,0.1);
+  }
+
+  .machine-img {
+    width: 100%; height: 220px;
+    background: var(--navy-3);
+    display: flex; align-items: center; justify-content: center;
+    position: relative; overflow: hidden;
+  }
+
+  .machine-img-inner {
+    font-size: 5rem; opacity: 0.6;
+    transition: transform 0.4s;
+  }
+
+  .machine-card:hover .machine-img-inner { transform: scale(1.1); }
+
+  .machine-badge {
+    position: absolute; top: 16px; right: 16px;
+    font-family: var(--font-mono); font-size: 0.6rem;
+    color: var(--cyan); background: rgba(0,200,255,0.1);
+    border: 1px solid rgba(0,200,255,0.3);
+    padding: 4px 10px; border-radius: 2px;
+    letter-spacing: 0.1em; text-transform: uppercase;
+  }
+
+  .machine-body { padding: 28px; }
+
+  .machine-name {
+    font-size: 1rem; font-weight: 700; margin-bottom: 8px;
+  }
+
+  .machine-desc {
+    font-size: 0.8rem; color: var(--gray);
+    line-height: 1.65; margin-bottom: 20px;
+  }
+
+  .machine-specs {
+    display: flex; gap: 16px; margin-bottom: 24px;
+    padding-bottom: 20px; border-bottom: 1px solid var(--glass-border);
+  }
+
+  .spec {
+    flex: 1;
+  }
+
+  .spec-val {
+    font-family: var(--font-mono); font-size: 0.85rem;
+    color: var(--white); font-weight: 500;
+  }
+
+  .spec-key {
+    font-size: 0.68rem; color: var(--gray); letter-spacing: 0.05em;
+    margin-top: 2px;
+  }
+
+  /* ─── STATS COUNTER ─── */
+  #stats {
+    background: linear-gradient(135deg, var(--navy-3) 0%, var(--navy-2) 100%);
+    position: relative; overflow: hidden;
+  }
+
+  #stats::before {
+    content: '';
+    position: absolute; inset: 0;
+    background:
+      radial-gradient(ellipse 60% 80% at 50% 50%, rgba(0,85,255,0.1), transparent);
+  }
+
+  .stats-grid {
+    display: grid; grid-template-columns: repeat(4, 1fr);
+    gap: 2px; background: var(--glass-border);
+    border: 1px solid var(--glass-border);
+    border-radius: 12px; overflow: hidden;
+    position: relative; z-index: 1;
+  }
+
+  .counter-card {
+    background: rgba(255,255,255,0.02);
+    padding: 56px 36px; text-align: center;
+    position: relative;
+    backdrop-filter: blur(10px);
+  }
+
+  .counter-card::before {
+    content: '';
+    position: absolute; top: 0; left: 20%; right: 20%; height: 1px;
+    background: linear-gradient(90deg, transparent, var(--cyan), transparent);
+  }
+
+  .counter-num {
+    font-family: var(--font-display);
+    font-size: 5rem; line-height: 1;
+    background: linear-gradient(180deg, var(--white), var(--cyan));
+    -webkit-background-clip: text;
+    -webkit-text-fill-color: transparent;
+    background-clip: text;
+  }
+
+  .counter-label {
+    font-family: var(--font-mono); font-size: 0.7rem;
+    color: var(--gray); letter-spacing: 0.2em;
+    text-transform: uppercase; margin-top: 12px;
+  }
+
+  /* ─── TESTIMONIALS ─── */
+  #testimonials { background: var(--navy); }
+
+  .testimonials-grid {
+    display: grid; grid-template-columns: repeat(3, 1fr);
+    gap: 24px; margin-top: 72px;
+  }
+
+  .testimonial-card {
+    background: var(--glass);
+    border: 1px solid var(--glass-border);
+    border-radius: 12px; padding: 36px;
+    transition: all 0.3s;
+    position: relative;
+  }
+
+  .testimonial-card:hover {
+    border-color: rgba(0,200,255,0.2);
+    background: rgba(0,85,255,0.04);
+    transform: translateY(-4px);
+  }
+
+  .quote-mark {
+    font-family: var(--font-display); font-size: 6rem;
+    color: rgba(0,85,255,0.25); line-height: 0.6;
+    margin-bottom: 24px; display: block;
+  }
+
+  .testimonial-text {
+    font-size: 0.9rem; color: var(--gray-2);
+    line-height: 1.8; margin-bottom: 28px;
+    font-style: italic;
+  }
+
+  .testimonial-author {
+    display: flex; align-items: center; gap: 14px;
+    padding-top: 20px; border-top: 1px solid var(--glass-border);
+  }
+
+  .author-avatar {
+    width: 44px; height: 44px; border-radius: 50%;
+    background: linear-gradient(135deg, var(--blue), var(--cyan));
+    display: flex; align-items: center; justify-content: center;
+    font-weight: 700; font-size: 0.85rem;
+    flex-shrink: 0;
+  }
+
+  .author-name { font-size: 0.88rem; font-weight: 700; }
+  .author-role { font-size: 0.72rem; color: var(--gray); margin-top: 2px; }
+
+  .stars {
+    display: flex; gap: 3px; margin-bottom: 20px;
+  }
+
+  .star { color: #f5a623; font-size: 0.8rem; }
+
+  /* ─── PARTNERS ─── */
+  #partners { background: var(--navy-2); }
+
+  .partners-strip {
+    display: flex; gap: 60px; align-items: center;
+    margin-top: 60px; overflow: hidden;
+    mask-image: linear-gradient(90deg, transparent, black 10%, black 90%, transparent);
+  }
+
+  .partners-inner {
+    display: flex; gap: 60px; align-items: center;
+    animation: scroll 20s linear infinite;
+    white-space: nowrap;
+  }
+
+  @keyframes scroll { to { transform: translateX(-50%); } }
+
+  .partner-logo {
+    font-family: var(--font-display);
+    font-size: 1.4rem; letter-spacing: 0.12em;
+    color: var(--gray); transition: color 0.3s;
+    white-space: nowrap;
+  }
+
+  .partner-logo:hover { color: var(--white); }
+
+  /* ─── NEWS ─── */
+  #news { background: var(--navy); }
+
+  .news-grid {
+    display: grid; grid-template-columns: 1fr 1fr 1fr;
+    gap: 24px; margin-top: 72px;
+  }
+
+  .news-card {
+    background: var(--steel);
+    border: 1px solid var(--glass-border);
+    border-radius: 8px; overflow: hidden;
+    transition: all 0.3s;
+  }
+
+  .news-card:hover { transform: translateY(-4px); border-color: rgba(0,200,255,0.2); }
+
+  .news-thumb {
+    width: 100%; height: 180px;
+    background: var(--navy-3);
+    display: flex; align-items: center; justify-content: center;
+    font-size: 3rem; opacity: 0.5;
+    position: relative;
+  }
+
+  .news-cat {
+    position: absolute; bottom: 12px; left: 16px;
+    font-family: var(--font-mono); font-size: 0.62rem;
+    color: var(--cyan); background: rgba(0,200,255,0.12);
+    border: 1px solid rgba(0,200,255,0.25);
+    padding: 4px 10px; border-radius: 2px;
+    letter-spacing: 0.1em; text-transform: uppercase;
+  }
+
+  .news-body { padding: 24px; }
+  .news-date { font-family: var(--font-mono); font-size: 0.65rem; color: var(--gray); letter-spacing: 0.1em; margin-bottom: 10px; }
+  .news-title { font-size: 0.95rem; font-weight: 700; line-height: 1.4; margin-bottom: 10px; }
+  .news-excerpt { font-size: 0.78rem; color: var(--gray); line-height: 1.65; }
+
+  /* ─── CONTACT ─── */
+  #contact { background: var(--navy-2); }
+
+  .contact-grid {
+    display: grid; grid-template-columns: 1fr 1fr;
+    gap: 80px; margin-top: 72px; align-items: start;
+  }
+
+  .contact-info h3 {
+    font-family: var(--font-display);
+    font-size: 2rem; margin-bottom: 32px;
+  }
+
+  .contact-item {
+    display: flex; gap: 16px; align-items: flex-start;
+    margin-bottom: 28px; padding-bottom: 28px;
+    border-bottom: 1px solid var(--glass-border);
+  }
+
+  .contact-item:last-child { border-bottom: none; }
+
+  .contact-icon {
+    width: 44px; height: 44px; border-radius: 8px;
+    background: rgba(0,85,255,0.12);
+    border: 1px solid rgba(0,85,255,0.25);
+    display: flex; align-items: center; justify-content: center;
+    font-size: 1.1rem; flex-shrink: 0;
+  }
+
+  .contact-label { font-family: var(--font-mono); font-size: 0.65rem; color: var(--gray); letter-spacing: 0.15em; text-transform: uppercase; margin-bottom: 4px; }
+  .contact-val { font-size: 0.9rem; color: var(--white); font-weight: 500; }
+
+  .contact-form {
+    background: var(--glass);
+    border: 1px solid var(--glass-border);
+    border-radius: 12px; padding: 44px;
+    position: relative;
+  }
+
+  .contact-form::before {
+    content: '';
+    position: absolute; top: 0; left: 40px; right: 40px; height: 1px;
+    background: linear-gradient(90deg, transparent, var(--blue), transparent);
+  }
+
+  .form-row { display: grid; grid-template-columns: 1fr 1fr; gap: 16px; }
+
+  .form-group { margin-bottom: 16px; }
+
+  .form-group label {
+    display: block; font-family: var(--font-mono);
+    font-size: 0.65rem; color: var(--gray);
+    letter-spacing: 0.15em; text-transform: uppercase;
+    margin-bottom: 8px;
+  }
+
+  .form-group input,
+  .form-group select,
+  .form-group textarea {
+    width: 100%; background: rgba(255,255,255,0.04);
+    border: 1px solid var(--glass-border);
+    border-radius: 4px; padding: 12px 16px;
+    color: var(--white); font-family: var(--font-body);
+    font-size: 0.88rem; outline: none;
+    transition: all 0.2s;
+    -webkit-appearance: none;
+  }
+
+  .form-group input:focus,
+  .form-group select:focus,
+  .form-group textarea:focus {
+    border-color: var(--blue);
+    background: rgba(0,85,255,0.05);
+    box-shadow: 0 0 0 3px rgba(0,85,255,0.1);
+  }
+
+  .form-group textarea { resize: vertical; min-height: 110px; }
+  .form-group select option { background: var(--navy); }
+
+  .wa-btn {
+    display: inline-flex; align-items: center; gap: 10px;
+    background: #25d366; color: var(--white);
+    padding: 14px 28px; border-radius: 4px;
+    font-size: 0.85rem; font-weight: 600; letter-spacing: 0.08em;
+    text-decoration: none; margin-top: 20px;
+    transition: all 0.3s;
+    box-shadow: 0 0 30px rgba(37,211,102,0.3);
+  }
+
+  .wa-btn:hover { background: #20ba5a; transform: translateY(-2px); }
+
+  /* ─── MAP PLACEHOLDER ─── */
+  .map-placeholder {
+    background: var(--steel);
+    border: 1px solid var(--glass-border);
+    border-radius: 8px; height: 200px;
+    display: flex; align-items: center; justify-content: center;
+    margin-top: 32px;
+    font-family: var(--font-mono); font-size: 0.75rem;
+    color: var(--gray); letter-spacing: 0.15em;
+    text-transform: uppercase;
+    flex-direction: column; gap: 12px;
+  }
+
+  /* ─── FOOTER ─── */
+  footer {
+    background: var(--navy-3);
+    border-top: 1px solid var(--glass-border);
+    padding: 80px 5% 40px;
+  }
+
+  .footer-grid {
+    max-width: 1600px; margin: 0 auto;
+    display: grid; grid-template-columns: 2fr 1fr 1fr 1fr 1.5fr;
+    gap: 60px; margin-bottom: 60px;
+  }
+
+  .footer-brand p {
+    font-size: 0.83rem; color: var(--gray); line-height: 1.8;
+    margin-top: 20px; max-width: 300px;
+  }
+
+  .footer-col h4 {
+    font-family: var(--font-mono); font-size: 0.68rem;
+    color: var(--white); letter-spacing: 0.2em;
+    text-transform: uppercase; margin-bottom: 24px;
+  }
+
+  .footer-col ul { list-style: none; }
+  .footer-col li { margin-bottom: 10px; }
+  .footer-col a {
+    text-decoration: none; color: var(--gray);
+    font-size: 0.82rem; transition: color 0.2s;
+  }
+  .footer-col a:hover { color: var(--cyan); }
+
+  .newsletter-form {
+    display: flex; gap: 0; margin-top: 8px;
+  }
+
+  .newsletter-form input {
+    flex: 1; background: rgba(255,255,255,0.05);
+    border: 1px solid var(--glass-border); border-right: none;
+    border-radius: 4px 0 0 4px; padding: 10px 14px;
+    color: var(--white); font-family: var(--font-body);
+    font-size: 0.82rem; outline: none;
+  }
+
+  .newsletter-form input:focus { border-color: var(--blue); }
+
+  .newsletter-form button {
+    background: var(--blue); border: none;
+    border-radius: 0 4px 4px 0; padding: 10px 18px;
+    color: var(--white); cursor: pointer;
+    font-size: 0.82rem; font-weight: 600;
+    transition: background 0.2s;
+  }
+
+  .newsletter-form button:hover { background: var(--blue-2); }
+
+  .social-links {
+    display: flex; gap: 12px; margin-top: 24px;
+  }
+
+  .social-link {
+    width: 36px; height: 36px; border-radius: 4px;
+    background: rgba(255,255,255,0.05);
+    border: 1px solid var(--glass-border);
+    display: flex; align-items: center; justify-content: center;
+    text-decoration: none; font-size: 0.9rem;
+    transition: all 0.2s;
+  }
+
+  .social-link:hover { background: var(--blue); border-color: var(--blue); }
+
+  .footer-bottom {
+    max-width: 1600px; margin: 0 auto;
+    display: flex; align-items: center; justify-content: space-between;
+    padding-top: 32px; border-top: 1px solid var(--glass-border);
+  }
+
+  .footer-bottom p {
+    font-family: var(--font-mono); font-size: 0.68rem;
+    color: var(--gray); letter-spacing: 0.08em;
+  }
+
+  .footer-bottom-links { display: flex; gap: 24px; }
+  .footer-bottom-links a {
+    font-family: var(--font-mono); font-size: 0.68rem;
+    color: var(--gray); text-decoration: none; transition: color 0.2s;
+    letter-spacing: 0.08em;
+  }
+  .footer-bottom-links a:hover { color: var(--white); }
+
+  /* ─── REVEAL ANIMATIONS ─── */
+  .reveal {
+    opacity: 0; transform: translateY(30px);
+    transition: all 0.7s cubic-bezier(0.16, 1, 0.3, 1);
+  }
+  .reveal.visible { opacity: 1; transform: translateY(0); }
+  .reveal-delay-1 { transition-delay: 0.1s; }
+  .reveal-delay-2 { transition-delay: 0.2s; }
+  .reveal-delay-3 { transition-delay: 0.3s; }
+  .reveal-delay-4 { transition-delay: 0.4s; }
+
+  /* ─── RESPONSIVE ─── */
+  @media (max-width: 1200px) {
+    .products-grid { grid-template-columns: repeat(2, 1fr); }
+    .industries-grid { grid-template-columns: repeat(4, 1fr); }
+    .why-grid { grid-template-columns: repeat(2, 1fr); }
+    .footer-grid { grid-template-columns: 1fr 1fr; gap: 40px; }
+  }
+
+  @media (max-width: 900px) {
+    section { padding: 80px 5%; }
+    .hero-content { grid-template-columns: 1fr; gap: 50px; }
+    .hero-stats { display: grid; grid-template-columns: repeat(2, 1fr); gap: 1px; background: var(--glass-border); }
+    .stat-item { border-bottom: none; background: rgba(255,255,255,0.03); padding: 24px 20px; }
+    .smart-grid { grid-template-columns: 1fr; gap: 40px; }
+    .contact-grid { grid-template-columns: 1fr; gap: 50px; }
+    .testimonials-grid { grid-template-columns: 1fr; }
+    .machines-slider { grid-template-columns: 1fr 1fr; }
+    .stats-grid { grid-template-columns: repeat(2, 1fr); }
+    .news-grid { grid-template-columns: 1fr; }
+    .nav-links { display: none; }
+    .hamburger { display: flex; }
+    .products-header { grid-template-columns: 1fr; gap: 24px; }
+  }
+
+  @media (max-width: 600px) {
+    h1 { font-size: 3rem; }
+    .hero-btns { flex-direction: column; }
+    .btn-primary, .btn-secondary { text-align: center; justify-content: center; }
+    .products-grid { grid-template-columns: 1fr; }
+    .industries-grid { grid-template-columns: repeat(4, 1fr); }
+    .smart-features { grid-template-columns: 1fr; }
+    .why-grid { grid-template-columns: 1fr; }
+    .machines-slider { grid-template-columns: 1fr; }
+    .stats-grid { grid-template-columns: 1fr 1fr; }
+    .footer-grid { grid-template-columns: 1fr; gap: 40px; }
+    .footer-bottom { flex-direction: column; gap: 16px; text-align: center; }
+    .form-row { grid-template-columns: 1fr; }
+    .contact-form { padding: 28px 20px; }
+    .timeline-track { gap: 0; }
+  }
+
+  /* ─── GLOWING BAR ─── */
+  .glow-bar {
+    height: 2px;
+    background: linear-gradient(90deg, transparent, var(--blue) 30%, var(--cyan) 70%, transparent);
+  }
+
+  /* ─── PROCESS NUMBERS ─── */
+  .process-steps {
+    display: grid; grid-template-columns: repeat(4, 1fr);
+    gap: 2px; background: var(--glass-border);
+    border: 1px solid var(--glass-border);
+    border-radius: 12px; overflow: hidden;
+    margin-top: 72px;
+  }
+
+  .process-step {
+    background: var(--steel); padding: 40px 28px;
+    position: relative; transition: background 0.3s;
+  }
+
+  .process-step:hover { background: var(--steel-2); }
+
+  .step-num {
+    font-family: var(--font-display); font-size: 1rem;
+    color: var(--cyan); letter-spacing: 0.1em; margin-bottom: 20px;
+  }
+
+  .step-title { font-size: 1rem; font-weight: 700; margin-bottom: 10px; }
+  .step-desc { font-size: 0.8rem; color: var(--gray); line-height: 1.65; }
+
+  .step-arrow {
+    position: absolute; top: 50%; right: -12px;
+    width: 24px; height: 24px;
+    background: var(--navy-3); border: 1px solid var(--glass-border);
+    border-radius: 50%;
+    display: flex; align-items: center; justify-content: center;
+    font-size: 0.7rem; color: var(--cyan);
+    z-index: 2; transform: translateY(-50%);
+  }
+
+  /* ─── CTA STRIP ─── */
+  .cta-strip {
+    background: linear-gradient(135deg, var(--blue) 0%, #003fcc 50%, #0020aa 100%);
+    padding: 80px 5%;
+    position: relative; overflow: hidden;
+    text-align: center;
+  }
+
+  .cta-strip::before {
+    content: '';
+    position: absolute; inset: 0;
+    background:
+      radial-gradient(ellipse 60% 100% at 50% 0%, rgba(0,200,255,0.2), transparent),
+      url("data:image/svg+xml,%3Csvg width='60' height='60' xmlns='http://www.w3.org/2000/svg'%3E%3Cpath d='M0 60L60 0M-10 10L10-10M50 70L70 50' stroke='rgba(255,255,255,0.04)' stroke-width='1'/%3E%3C/svg%3E");
+  }
+
+  .cta-strip h2 {
+    font-family: var(--font-display); font-size: clamp(2rem,5vw,4rem);
+    margin-bottom: 16px; position: relative; z-index: 1;
+  }
+
+  .cta-strip p {
+    color: rgba(255,255,255,0.8); font-size: 1rem;
+    margin-bottom: 40px; position: relative; z-index: 1;
+  }
+
+  .cta-btns {
+    display: flex; gap: 16px; justify-content: center;
+    flex-wrap: wrap; position: relative; z-index: 1;
+  }
+
+  .btn-white {
+    display: inline-flex; align-items: center; gap: 10px;
+    background: var(--white); color: var(--blue);
+    padding: 16px 36px; border-radius: 4px;
+    font-size: 0.85rem; font-weight: 700;
+    letter-spacing: 0.1em; text-transform: uppercase;
+    text-decoration: none; transition: all 0.3s;
+  }
+
+  .btn-white:hover { background: var(--off-white); transform: translateY(-2px); }
+
+  .btn-outline-white {
+    display: inline-flex; align-items: center; gap: 10px;
+    background: transparent; color: var(--white);
+    padding: 16px 36px; border-radius: 4px;
+    font-size: 0.85rem; font-weight: 700;
+    letter-spacing: 0.1em; text-transform: uppercase;
+    text-decoration: none; transition: all 0.3s;
+    border: 2px solid rgba(255,255,255,0.4);
+  }
+
+  .btn-outline-white:hover { border-color: var(--white); background: rgba(255,255,255,0.1); }
+</style>
+</head>
+<body>
+
+<!-- Cursor glow -->
+<div class="cursor-glow" id="cursorGlow"></div>
+
+<!-- ─── NAVIGATION ─── -->
+<nav id="navbar">
+  <div class="nav-inner">
+    <a href="#" class="logo">
+      <div class="logo-mark"></div>
+      <div>
+        <span class="logo-text">NEXUS</span>
+        <span class="logo-sub">Precision Technology</span>
+      </div>
+    </a>
+
+    <ul class="nav-links">
+      <li><a href="#">Home</a></li>
+      <li><a href="#products">Products</a></li>
+      <li><a href="#industries">Industries</a></li>
+      <li><a href="#smart">Smart Mfg</a></li>
+      <li><a href="#about">About</a></li>
+      <li><a href="#news">Insights</a></li>
+      <li><a href="#contact" class="nav-cta">Get in Touch</a></li>
+    </ul>
+
+    <button class="hamburger" id="hamburger" aria-label="Menu">
+      <span></span><span></span><span></span>
+    </button>
+  </div>
+</nav>
+
+<div class="mobile-menu" id="mobileMenu">
+  <a href="#">Home</a>
+  <a href="#products">Products</a>
+  <a href="#industries">Industries</a>
+  <a href="#smart">Smart Manufacturing</a>
+  <a href="#about">About Us</a>
+  <a href="#news">Insights</a>
+  <a href="#contact">Contact</a>
+</div>
+
+<!-- ─── HERO ─── -->
+<section id="hero">
+  <div class="hero-video-bg"></div>
+  <div class="hero-grid"></div>
+
+  <div class="particles" id="particles"></div>
+
+  <div class="hero-content">
+    <div>
+      <div class="hero-eyebrow reveal">Industry 4.0 Leaders · Precision at Scale</div>
+      <h1 class="reveal reveal-delay-1">
+        Engineering the <span>Future</span> of Precision Manufacturing
+      </h1>
+      <p class="hero-sub reveal reveal-delay-2">
+        Advanced CNC Machines, Automation Solutions, Smart Factory Integration, and Industrial Technology for Modern Manufacturing — delivering micron-level accuracy across every sector.
+      </p>
+      <div class="hero-btns reveal reveal-delay-3">
+        <a href="#products" class="btn-primary">
+          <span>Explore Machines</span>
+          <svg width="16" height="16" viewBox="0 0 16 16" fill="none"><path d="M3 8h10M9 4l4 4-4 4" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"/></svg>
+        </a>
+        <a href="#contact" class="btn-secondary">
+          <span>Request Consultation</span>
+          <svg width="16" height="16" viewBox="0 0 16 16" fill="none"><path d="M8 2a6 6 0 110 12A6 6 0 018 2zm0 3v4l3 1.5" stroke="currentColor" stroke-width="1.5" stroke-linecap="round"/></svg>
+        </a>
+      </div>
+    </div>
+
+    <div class="hero-stats reveal reveal-delay-2">
+      <div class="stat-item">
+        <div class="stat-num" data-target="25">0</div>
+        <div class="stat-label">Years of Industry Leadership</div>
+      </div>
+      <div class="stat-item">
+        <div class="stat-num" data-target="500">0</div>
+        <div class="stat-label">Installed Machines Worldwide</div>
+      </div>
+      <div class="stat-item">
+        <div class="stat-num" data-target="1000">0</div>
+        <div class="stat-label">Satisfied Clients Globally</div>
+      </div>
+      <div class="stat-item" style="border-bottom:none">
+        <div class="stat-num">24/7</div>
+        <div class="stat-label">Technical Support Always On</div>
+      </div>
+    </div>
+  </div>
+
+  <a href="#products" class="scroll-hint">
+    <span>Scroll</span>
+    <div class="scroll-line"></div>
+  </a>
+</section>
+
+<div class="glow-bar"></div>
+
+<!-- ─── PRODUCTS ─── -->
+<section id="products">
+  <div class="container">
+    <div class="products-header">
+      <div>
+        <div class="section-label reveal">Product Portfolio</div>
+        <h2 class="reveal reveal-delay-1">Machines Built for<br>Extreme Performance</h2>
+      </div>
+      <p class="section-sub reveal reveal-delay-2">
+        From high-speed 5-axis machining to full turnkey automation — our catalog covers every production challenge, with German-precision engineering at the core.
+      </p>
+    </div>
+
+    <div class="products-grid">
+      <div class="product-card reveal">
+        <div class="product-icon">⚙️</div>
+        <h3>CNC Milling Machines</h3>
+        <p>High-speed vertical and horizontal milling with spindle speeds up to 30,000 RPM for complex geometry machining.</p>
+        <a href="#" class="learn-more">Learn More →</a>
+      </div>
+      <div class="product-card reveal reveal-delay-1">
+        <div class="product-icon">🔩</div>
+        <h3>CNC Turning Centers</h3>
+        <p>Precision live-tool turning centers with Y-axis capability, sub-spindle, and bar capacity up to 125mm diameter.</p>
+        <a href="#" class="learn-more">Learn More →</a>
+      </div>
+      <div class="product-card reveal reveal-delay-2">
+        <div class="product-icon">🌐</div>
+        <h3>5-Axis Machining Centers</h3>
+        <p>Simultaneous 5-axis machining for aerospace-grade complex parts, reducing setups by up to 80%.</p>
+        <a href="#" class="learn-more">Learn More →</a>
+      </div>
+      <div class="product-card reveal reveal-delay-3">
+        <div class="product-icon">📐</div>
+        <h3>Vertical Machining Centers</h3>
+        <p>Rigid VMC platforms for high-accuracy mold, die, and structural component production at exceptional cycle times.</p>
+        <a href="#" class="learn-more">Learn More →</a>
+      </div>
+      <div class="product-card reveal">
+        <div class="product-icon">🏭</div>
+        <h3>Horizontal Machining Centers</h3>
+        <p>Pallet-change HMC systems for lights-out production with excellent chip evacuation on large prismatic parts.</p>
+        <a href="#" class="learn-more">Learn More →</a>
+      </div>
+      <div class="product-card reveal reveal-delay-1">
+        <div class="product-icon">🤖</div>
+        <h3>Automation Systems</h3>
+        <p>Integrated pallet management, ANCA robot loaders, and conveyor systems for 24-hour unmanned machining cells.</p>
+        <a href="#" class="learn-more">Learn More →</a>
+      </div>
+      <div class="product-card reveal reveal-delay-2">
+        <div class="product-icon">🦾</div>
+        <h3>Robotic Solutions</h3>
+        <p>Collaborative and industrial robots for tending, welding, inspection, and assembly — fully integrated with our CNCs.</p>
+        <a href="#" class="learn-more">Learn More →</a>
+      </div>
+      <div class="product-card reveal reveal-delay-3">
+        <div class="product-icon">🧠</div>
+        <h3>Smart Factory Solutions</h3>
+        <p>MES, DNC, and IIoT platforms connecting every machine to your ERP for real-time OEE and predictive analytics.</p>
+        <a href="#" class="learn-more">Learn More →</a>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- ─── INDUSTRIES ─── -->
+<section id="industries">
+  <div class="container">
+    <div class="section-label reveal">Sectors We Serve</div>
+    <h2 class="reveal reveal-delay-1">Trusted Across<br>Critical Industries</h2>
+    <p class="section-sub reveal reveal-delay-2">Our machines operate at the heart of the world's most demanding manufacturing environments — where failure is not an option.</p>
+
+    <div class="industries-grid reveal">
+      <div class="industry-item">
+        <div class="industry-icon">✈️</div>
+        <div class="industry-name">Aerospace</div>
+      </div>
+      <div class="industry-item">
+        <div class="industry-icon">🚗</div>
+        <div class="industry-name">Automotive</div>
+      </div>
+      <div class="industry-item">
+        <div class="industry-icon">🏥</div>
+        <div class="industry-name">Medical</div>
+      </div>
+      <div class="industry-item">
+        <div class="industry-icon">🛡️</div>
+        <div class="industry-name">Defense</div>
+      </div>
+      <div class="industry-item">
+        <div class="industry-icon">⚡</div>
+        <div class="industry-name">Energy</div>
+      </div>
+      <div class="industry-item">
+        <div class="industry-icon">💎</div>
+        <div class="industry-name">Mold & Die</div>
+      </div>
+      <div class="industry-item">
+        <div class="industry-icon">💻</div>
+        <div class="industry-name">Electronics</div>
+      </div>
+      <div class="industry-item">
+        <div class="industry-icon">⚓</div>
+        <div class="industry-name">Heavy Eng.</div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- ─── PROCESS ─── -->
+<section id="about" style="background: var(--navy-2);">
+  <div class="container">
+    <div class="section-label reveal">Our Process</div>
+    <h2 class="reveal reveal-delay-1">From Consultation<br>to Production</h2>
+    <p class="section-sub reveal reveal-delay-2">A proven 4-step engagement model that eliminates risk and accelerates your path to precision output.</p>
+
+    <div class="process-steps reveal">
+      <div class="process-step">
+        <div class="step-num">01</div>
+        <div class="step-title">Needs Analysis</div>
+        <div class="step-desc">We audit your current production, identify bottlenecks, and define the exact machine configuration for your requirements.</div>
+        <div class="step-arrow">›</div>
+      </div>
+      <div class="process-step">
+        <div class="step-num">02</div>
+        <div class="step-title">Solution Design</div>
+        <div class="step-desc">Engineering team designs a full turnkey cell — machine, tooling, fixturing, automation, and software — before any purchase.</div>
+        <div class="step-arrow">›</div>
+      </div>
+      <div class="process-step">
+        <div class="step-num">03</div>
+        <div class="step-title">Installation & Training</div>
+        <div class="step-desc">Factory acceptance test, on-site commissioning, and hands-on operator training to production readiness in days.</div>
+        <div class="step-arrow">›</div>
+      </div>
+      <div class="process-step">
+        <div class="step-num">04</div>
+        <div class="step-title">Lifetime Support</div>
+        <div class="step-desc">24/7 remote monitoring, predictive maintenance alerts, same-day spare parts, and a dedicated account engineer for life.</div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- ─── TIMELINE ─── -->
+<section id="timeline">
+  <div class="container">
+    <div class="section-label reveal">Company Journey</div>
+    <h2 class="reveal reveal-delay-1">Two Decades of<br>Manufacturing Innovation</h2>
+  </div>
+  <div style="max-width:1600px;margin:0 auto;padding:0 5%;">
+    <div class="timeline-track" id="timelineTrack">
+      <div class="timeline-line"><div class="timeline-line-fill"></div></div>
+
+      <div class="milestone active">
+        <div class="milestone-dot"></div>
+        <div class="milestone-year">1999</div>
+        <div class="milestone-title">Company Founded</div>
+        <div class="milestone-desc">Established in Karachi as a precision CNC tooling distributor with 3 engineers.</div>
+      </div>
+      <div class="milestone active">
+        <div class="milestone-dot"></div>
+        <div class="milestone-year">2003</div>
+        <div class="milestone-title">First Machine Build</div>
+        <div class="milestone-desc">Launched our first in-house VMC series, achieving sub-5-micron positioning accuracy.</div>
+      </div>
+      <div class="milestone active">
+        <div class="milestone-dot"></div>
+        <div class="milestone-year">2007</div>
+        <div class="milestone-title">Regional Expansion</div>
+        <div class="milestone-desc">Opened operations in UAE, Saudi Arabia, and Bangladesh. 100th machine installed.</div>
+      </div>
+      <div class="milestone active">
+        <div class="milestone-dot"></div>
+        <div class="milestone-year">2011</div>
+        <div class="milestone-title">5-Axis Launch</div>
+        <div class="milestone-desc">Introduced the N5X platform — our first simultaneous 5-axis machining center for aerospace clients.</div>
+      </div>
+      <div class="milestone active">
+        <div class="milestone-dot"></div>
+        <div class="milestone-year">2015</div>
+        <div class="milestone-title">Automation Division</div>
+        <div class="milestone-desc">Formed the Robotics & Automation division. First fully unmanned manufacturing cell delivered.</div>
+      </div>
+      <div class="milestone">
+        <div class="milestone-dot"></div>
+        <div class="milestone-year">2019</div>
+        <div class="milestone-title">Smart Factory Platform</div>
+        <div class="milestone-desc">Launched NEXUS iQ — our Industry 4.0 IoT platform for real-time fleet monitoring and AI diagnostics.</div>
+      </div>
+      <div class="milestone">
+        <div class="milestone-dot"></div>
+        <div class="milestone-year">2023</div>
+        <div class="milestone-title">AI Predictive Maintenance</div>
+        <div class="milestone-desc">500th machine milestone. Rolled out AI-powered predictive maintenance across entire installed base.</div>
+      </div>
+      <div class="milestone">
+        <div class="milestone-dot"></div>
+        <div class="milestone-year">2025</div>
+        <div class="milestone-title">Global Technology Leader</div>
+        <div class="milestone-desc">Recognized by Industrial Week as Top 50 global precision technology companies.</div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- ─── SMART MANUFACTURING ─── -->
+<section id="smart">
+  <div class="container">
+    <div class="section-label reveal">Digital Innovation</div>
+    <h2 class="reveal reveal-delay-1">Smart Manufacturing<br>for the Industry 4.0 Era</h2>
+    <p class="section-sub reveal reveal-delay-2">NEXUS iQ connects your entire factory floor in real time — turning raw machine data into decisions that cut downtime and drive throughput.</p>
+
+    <div class="smart-grid">
+      <div class="smart-visual reveal">
+        <svg class="circuit-svg" viewBox="0 0 400 400" xmlns="http://www.w3.org/2000/svg">
+          <!-- Grid lines -->
+          <path class="circuit-path" d="M200 0 L200 150 M200 250 L200 400" stroke="#0055ff" stroke-width="1" fill="none"/>
+          <path class="circuit-path" d="M0 200 L150 200 M250 200 L400 200" stroke="#0055ff" stroke-width="1" fill="none"/>
+          <path class="circuit-path" d="M50 50 L150 150 M250 250 L350 350" stroke="#00c8ff" stroke-width="0.5" fill="none"/>
+          <path class="circuit-path" d="M350 50 L250 150 M150 250 L50 350" stroke="#00c8ff" stroke-width="0.5" fill="none"/>
+          <!-- Nodes -->
+          <circle cx="100" cy="100" r="4" fill="#0055ff" opacity="0.6"/>
+          <circle cx="300" cy="100" r="4" fill="#0055ff" opacity="0.6"/>
+          <circle cx="100" cy="300" r="4" fill="#0055ff" opacity="0.6"/>
+          <circle cx="300" cy="300" r="4" fill="#0055ff" opacity="0.6"/>
+          <circle cx="200" cy="50" r="3" fill="#00c8ff" opacity="0.8"/>
+          <circle cx="200" cy="350" r="3" fill="#00c8ff" opacity="0.8"/>
+          <circle cx="50" cy="200" r="3" fill="#00c8ff" opacity="0.8"/>
+          <circle cx="350" cy="200" r="3" fill="#00c8ff" opacity="0.8"/>
+          <!-- Outer ring marks -->
+          <circle cx="200" cy="200" r="160" stroke="rgba(0,85,255,0.15)" stroke-width="1" fill="none"/>
+          <circle cx="200" cy="200" r="120" stroke="rgba(0,200,255,0.1)" stroke-width="1" fill="none"/>
+        </svg>
+
+        <div class="center-ring">
+          <div class="center-dot"></div>
+        </div>
+
+        <div class="tech-tags">
+          <span class="tech-tag">IIoT</span>
+          <span class="tech-tag">AI/ML</span>
+          <span class="tech-tag">OPC-UA</span>
+          <span class="tech-tag">MQTT</span>
+          <span class="tech-tag">Edge Computing</span>
+          <span class="tech-tag">Digital Twin</span>
+        </div>
+      </div>
+
+      <div class="smart-features reveal reveal-delay-2">
+        <div class="smart-feat">
+          <div class="feat-icon">🏭</div>
+          <div class="feat-title">Industry 4.0 Ready</div>
+          <div class="feat-desc">Every machine ships with OPC-UA native connectivity and Ethernet I/P interfaces for seamless plant integration.</div>
+        </div>
+        <div class="smart-feat">
+          <div class="feat-icon">📊</div>
+          <div class="feat-title">Real-Time OEE Monitoring</div>
+          <div class="feat-desc">Live dashboards show availability, performance, and quality metrics across your entire installed fleet.</div>
+        </div>
+        <div class="smart-feat">
+          <div class="feat-icon">🔮</div>
+          <div class="feat-title">AI Predictive Maintenance</div>
+          <div class="feat-desc">Machine-learning models trained on 2M+ hours of spindle data predict failures 14 days in advance.</div>
+        </div>
+        <div class="smart-feat">
+          <div class="feat-icon">🌐</div>
+          <div class="feat-title">Digital Twin Simulation</div>
+          <div class="feat-desc">Full kinematic digital twin for offline programming, collision checking, and virtual commissioning before cutting.</div>
+        </div>
+        <div class="smart-feat">
+          <div class="feat-icon">📱</div>
+          <div class="feat-title">Mobile Command Center</div>
+          <div class="feat-desc">iOS and Android apps deliver alarm notifications, KPIs, and remote diagnostics from anywhere on earth.</div>
+        </div>
+        <div class="smart-feat">
+          <div class="feat-icon">🔄</div>
+          <div class="feat-title">ERP & MES Integration</div>
+          <div class="feat-desc">Out-of-box connectors for SAP, Oracle, Infor, and custom REST APIs for bidirectional work order sync.</div>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- ─── WHY US ─── -->
+<section id="why" style="background: var(--navy-2);">
+  <div class="container">
+    <div class="section-label reveal">Competitive Edge</div>
+    <h2 class="reveal reveal-delay-1">Why Global Manufacturers<br>Choose NEXUS</h2>
+
+    <div class="why-grid reveal">
+      <div class="why-card">
+        <div class="why-num">01</div>
+        <div class="why-icon">🎯</div>
+        <div class="why-title">Precision Engineering</div>
+        <div class="why-desc">Sub-2-micron positioning accuracy and ISO 230-certified thermal compensation across all machine lines.</div>
+      </div>
+      <div class="why-card">
+        <div class="why-num">02</div>
+        <div class="why-icon">🏆</div>
+        <div class="why-title">Certified Experts</div>
+        <div class="why-desc">Our team holds FANUC, Siemens, and Heidenhain master certifications — a rare combination in any region.</div>
+      </div>
+      <div class="why-card">
+        <div class="why-num">03</div>
+        <div class="why-icon">🌍</div>
+        <div class="why-title">Global Technology Partners</div>
+        <div class="why-desc">Authorized partners with DMG MORI, Sandvik Coromant, Renishaw, Blum, and KUKA Robotics.</div>
+      </div>
+      <div class="why-card">
+        <div class="why-num">04</div>
+        <div class="why-icon">⚡</div>
+        <div class="why-title">2-Hour Response SLA</div>
+        <div class="why-desc">Our 24/7 technical support guarantee delivers an engineer on-site or remotely within 2 hours of critical alerts.</div>
+      </div>
+      <div class="why-card">
+        <div class="why-num">05</div>
+        <div class="why-icon">🔧</div>
+        <div class="why-title">Turnkey Solutions</div>
+        <div class="why-desc">We design, supply, install, and commission complete machining cells — one contract, one point of responsibility.</div>
+      </div>
+      <div class="why-card">
+        <div class="why-num">06</div>
+        <div class="why-icon">📦</div>
+        <div class="why-title">Spare Parts Availability</div>
+        <div class="why-desc">Regional parts warehouse with 15,000+ SKUs ensures critical components ship same-day, anywhere in South Asia.</div>
+      </div>
+      <div class="why-card">
+        <div class="why-num">07</div>
+        <div class="why-icon">🎓</div>
+        <div class="why-title">Training Academy</div>
+        <div class="why-desc">The NEXUS Training Center offers operator, programmer, and maintenance courses — onsite or at our facility.</div>
+      </div>
+      <div class="why-card">
+        <div class="why-num">08</div>
+        <div class="why-icon">🛡️</div>
+        <div class="why-title">5-Year Warranty</div>
+        <div class="why-desc">Industry-leading 5-year mechanical warranty with optional extended coverage on spindle and servo drives.</div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- ─── MACHINES ─── -->
+<section id="machines">
+  <div class="container">
+    <div class="section-label reveal">Featured Equipment</div>
+    <h2 class="reveal reveal-delay-1">Flagship Machine<br>Platforms</h2>
+
+    <div class="machines-slider">
+      <div class="machine-card reveal">
+        <div class="machine-img">
+          <div class="machine-img-inner">⚙️</div>
+          <span class="machine-badge">Best Seller</span>
+        </div>
+        <div class="machine-body">
+          <div class="machine-name">NX-5000 Vertical Machining Center</div>
+          <div class="machine-desc">High-performance 3-axis VMC with 18,000 RPM direct-drive spindle, 30+1 ATC, and FANUC 0i-MF Plus control.</div>
+          <div class="machine-specs">
+            <div class="spec">
+              <div class="spec-val">1000×500</div>
+              <div class="spec-key">Table (mm)</div>
+            </div>
+            <div class="spec">
+              <div class="spec-val">18,000</div>
+              <div class="spec-key">Max RPM</div>
+            </div>
+            <div class="spec">
+              <div class="spec-val">±0.002</div>
+              <div class="spec-key">Accuracy (mm)</div>
+            </div>
+          </div>
+          <a href="#contact" class="btn-primary" style="font-size:0.78rem;padding:12px 24px;">Request Quote</a>
+        </div>
+      </div>
+
+      <div class="machine-card reveal reveal-delay-1">
+        <div class="machine-img">
+          <div class="machine-img-inner">🔩</div>
+          <span class="machine-badge">New 2025</span>
+        </div>
+        <div class="machine-body">
+          <div class="machine-name">NT-420 CNC Turning Center</div>
+          <div class="machine-desc">Live-tool turning center with Y-axis, sub-spindle, and 125mm bar capacity — 45kW main spindle motor.</div>
+          <div class="machine-specs">
+            <div class="spec">
+              <div class="spec-val">Ø420</div>
+              <div class="spec-key">Swing (mm)</div>
+            </div>
+            <div class="spec">
+              <div class="spec-val">5,000</div>
+              <div class="spec-key">Max RPM</div>
+            </div>
+            <div class="spec">
+              <div class="spec-val">±0.001</div>
+              <div class="spec-key">Accuracy (mm)</div>
+            </div>
+          </div>
+          <a href="#contact" class="btn-primary" style="font-size:0.78rem;padding:12px 24px;">Request Quote</a>
+        </div>
+      </div>
+
+      <div class="machine-card reveal reveal-delay-2">
+        <div class="machine-img">
+          <div class="machine-img-inner">🌐</div>
+          <span class="machine-badge">Premium</span>
+        </div>
+        <div class="machine-body">
+          <div class="machine-name">N5X-650 5-Axis Machining Center</div>
+          <div class="machine-desc">Trunnion-type simultaneous 5-axis machine. A+C axis torque motors, 20,000 RPM HSK-A63 spindle for aerospace titanium.</div>
+          <div class="machine-specs">
+            <div class="spec">
+              <div class="spec-val">650×550</div>
+              <div class="spec-key">Travel XY (mm)</div>
+            </div>
+            <div class="spec">
+              <div class="spec-val">20,000</div>
+              <div class="spec-key">Max RPM</div>
+            </div>
+            <div class="spec">
+              <div class="spec-val">±0.001</div>
+              <div class="spec-key">Accuracy (mm)</div>
+            </div>
+          </div>
+          <a href="#contact" class="btn-primary" style="font-size:0.78rem;padding:12px 24px;">Request Quote</a>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- ─── STATS ─── -->
+<section id="stats">
+  <div class="container">
+    <div class="stats-grid">
+      <div class="counter-card">
+        <div class="counter-num" data-target="500" data-suffix="+">0+</div>
+        <div class="counter-label">Machines Installed</div>
+      </div>
+      <div class="counter-card">
+        <div class="counter-num" data-target="1200" data-suffix="+">0+</div>
+        <div class="counter-label">Projects Completed</div>
+      </div>
+      <div class="counter-card">
+        <div class="counter-num" data-target="18" data-suffix="+">0+</div>
+        <div class="counter-label">Countries Served</div>
+      </div>
+      <div class="counter-card">
+        <div class="counter-num" data-target="25" data-suffix=" Yrs">0</div>
+        <div class="counter-label">Years Experience</div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- ─── TESTIMONIALS ─── -->
+<section id="testimonials" style="background: var(--navy);">
+  <div class="container">
+    <div class="section-label reveal">Client Stories</div>
+    <h2 class="reveal reveal-delay-1">Trusted by World-Class<br>Manufacturers</h2>
+
+    <div class="testimonials-grid">
+      <div class="testimonial-card reveal">
+        <div class="stars"><span class="star">★</span><span class="star">★</span><span class="star">★</span><span class="star">★</span><span class="star">★</span></div>
+        <span class="quote-mark">"</span>
+        <div class="testimonial-text">After installing six N5X machines, our aerospace component rejection rate dropped from 3.2% to 0.08%. NEXUS understood our precision requirements from day one — a truly engineering-led company.</div>
+        <div class="testimonial-author">
+          <div class="author-avatar">AK</div>
+          <div>
+            <div class="author-name">Ahmed Khan</div>
+            <div class="author-role">VP Manufacturing · Aero Precision Industries</div>
+          </div>
+        </div>
+      </div>
+
+      <div class="testimonial-card reveal reveal-delay-1">
+        <div class="stars"><span class="star">★</span><span class="star">★</span><span class="star">★</span><span class="star">★</span><span class="star">★</span></div>
+        <span class="quote-mark">"</span>
+        <div class="testimonial-text">The NEXUS iQ platform transformed our visibility. We went from reactive maintenance to zero unplanned downtime in 8 months. Their AI predicted a spindle failure that would have cost us $200K in lost production.</div>
+        <div class="testimonial-author">
+          <div class="author-avatar">SR</div>
+          <div>
+            <div class="author-name">Saqib Raza</div>
+            <div class="author-role">Plant Director · Premier Auto Components</div>
+          </div>
+        </div>
+      </div>
+
+      <div class="testimonial-card reveal reveal-delay-2">
+        <div class="stars"><span class="star">★</span><span class="star">★</span><span class="star">★</span><span class="star">★</span><span class="star">★</span></div>
+        <span class="quote-mark">"</span>
+        <div class="testimonial-text">We evaluated six suppliers across three continents. NEXUS won not just on price but on technical depth. Their engineers knew our medical-grade titanium challenges better than companies that have been in the market 40 years.</div>
+        <div class="testimonial-author">
+          <div class="author-avatar">FI</div>
+          <div>
+            <div class="author-name">Farhan Iqbal</div>
+            <div class="author-role">CTO · MedTech Surgical Instruments</div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- ─── PARTNERS ─── -->
+<section id="partners">
+  <div class="container">
+    <div class="section-label reveal">Technology Alliances</div>
+    <h2 class="reveal reveal-delay-1">Powered by World-Class<br>Technology Partners</h2>
+  </div>
+
+  <div class="partners-strip">
+    <div class="partners-inner">
+      <span class="partner-logo">FANUC</span>
+      <span class="partner-logo">SIEMENS</span>
+      <span class="partner-logo">HEIDENHAIN</span>
+      <span class="partner-logo">SANDVIK</span>
+      <span class="partner-logo">RENISHAW</span>
+      <span class="partner-logo">KUKA</span>
+      <span class="partner-logo">BOSCH REXROTH</span>
+      <span class="partner-logo">ISCAR</span>
+      <span class="partner-logo">BLUM</span>
+      <span class="partner-logo">SCHUNK</span>
+      <!-- Duplicate for seamless loop -->
+      <span class="partner-logo">FANUC</span>
+      <span class="partner-logo">SIEMENS</span>
+      <span class="partner-logo">HEIDENHAIN</span>
+      <span class="partner-logo">SANDVIK</span>
+      <span class="partner-logo">RENISHAW</span>
+      <span class="partner-logo">KUKA</span>
+      <span class="partner-logo">BOSCH REXROTH</span>
+      <span class="partner-logo">ISCAR</span>
+      <span class="partner-logo">BLUM</span>
+      <span class="partner-logo">SCHUNK</span>
+    </div>
+  </div>
+</section>
+
+<!-- ─── NEWS ─── -->
+<section id="news" style="background: var(--navy);">
+  <div class="container">
+    <div class="section-label reveal">Knowledge Hub</div>
+    <h2 class="reveal reveal-delay-1">Latest Insights &<br>Industry News</h2>
+
+    <div class="news-grid">
+      <div class="news-card reveal">
+        <div class="news-thumb">
+          🏭
+          <span class="news-cat">Industry 4.0</span>
+        </div>
+        <div class="news-body">
+          <div class="news-date">12 June 2025</div>
+          <div class="news-title">How Digital Twins Are Eliminating Aerospace Part Rejection at Source</div>
+          <div class="news-excerpt">Manufacturers using virtual commissioning report 60% fewer NCRs before a single chip is cut. We break down the technology stack making it happen.</div>
+        </div>
+      </div>
+
+      <div class="news-card reveal reveal-delay-1">
+        <div class="news-thumb">
+          🤖
+          <span class="news-cat">Automation</span>
+        </div>
+        <div class="news-body">
+          <div class="news-date">28 May 2025</div>
+          <div class="news-title">Lights-Out Machining: The ROI Case for Unmanned Overnight Production</div>
+          <div class="news-excerpt">A full financial model showing how a 3-machine cell with robot loader and pallet changer pays back in under 18 months for high-mix manufacturers.</div>
+        </div>
+      </div>
+
+      <div class="news-card reveal reveal-delay-2">
+        <div class="news-thumb">
+          🔬
+          <span class="news-cat">Technology</span>
+        </div>
+        <div class="news-body">
+          <div class="news-date">10 May 2025</div>
+          <div class="news-title">5-Axis vs 3+2: When Simultaneous Motion Delivers Real Productivity Gains</div>
+          <div class="news-excerpt">Not every part needs true simultaneous 5-axis. Our engineers explain where the investment is justified — and where 3+2 indexed cutting wins.</div>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- ─── CTA STRIP ─── -->
+<div class="cta-strip">
+  <div class="container">
+    <h2>Ready to Redefine<br>Your Production Capabilities?</h2>
+    <p>Speak with a NEXUS application engineer and get a no-obligation production analysis within 48 hours.</p>
+    <div class="cta-btns">
+      <a href="#contact" class="btn-white">Request a Consultation</a>
+      <a href="tel:+922134567890" class="btn-outline-white">📞 Call Now</a>
+    </div>
+  </div>
+</div>
+
+<!-- ─── CONTACT ─── -->
+<section id="contact">
+  <div class="container">
+    <div class="section-label reveal">Get in Touch</div>
+    <h2 class="reveal reveal-delay-1">Start Your Manufacturing<br>Transformation</h2>
+
+    <div class="contact-grid">
+      <div class="contact-info reveal">
+        <h3>We're Ready<br>When You Are</h3>
+
+        <div class="contact-item">
+          <div class="contact-icon">📍</div>
+          <div>
+            <div class="contact-label">Head Office</div>
+            <div class="contact-val">Plot 47, SITE Industrial Area<br>Karachi 75700, Pakistan</div>
+          </div>
+        </div>
+
+        <div class="contact-item">
+          <div class="contact-icon">📞</div>
+          <div>
+            <div class="contact-label">Sales Hotline</div>
+            <div class="contact-val">+92 21 3456 7890</div>
+          </div>
+        </div>
+
+        <div class="contact-item">
+          <div class="contact-icon">✉️</div>
+          <div>
+            <div class="contact-label">Email</div>
+            <div class="contact-val">sales@nexuscnc.com</div>
+          </div>
+        </div>
+
+        <div class="contact-item">
+          <div class="contact-icon">🕐</div>
+          <div>
+            <div class="contact-label">Technical Support</div>
+            <div class="contact-val">24 hours · 7 days · 365 days</div>
+          </div>
+        </div>
+
+        <a href="https://wa.me/923001234567" class="wa-btn">
+          <svg width="20" height="20" viewBox="0 0 24 24" fill="currentColor"><path d="M17.472 14.382c-.297-.149-1.758-.867-2.03-.967-.273-.099-.471-.148-.67.15-.197.297-.767.966-.94 1.164-.173.199-.347.223-.644.075-.297-.15-1.255-.463-2.39-1.475-.883-.788-1.48-1.761-1.653-2.059-.173-.297-.018-.458.13-.606.134-.133.298-.347.446-.52.149-.174.198-.298.298-.497.099-.198.05-.371-.025-.52-.075-.149-.669-1.612-.916-2.207-.242-.579-.487-.5-.669-.51-.173-.008-.371-.01-.57-.01-.198 0-.52.074-.792.372-.272.297-1.04 1.016-1.04 2.479 0 1.462 1.065 2.875 1.213 3.074.149.198 2.096 3.2 5.077 4.487.709.306 1.262.489 1.694.625.712.227 1.36.195 1.871.118.571-.085 1.758-.719 2.006-1.413.248-.694.248-1.289.173-1.413-.074-.124-.272-.198-.57-.347m-5.421 7.403h-.004a9.87 9.87 0 01-5.031-1.378l-.361-.214-3.741.982.998-3.648-.235-.374a9.86 9.86 0 01-1.51-5.26c.001-5.45 4.436-9.884 9.888-9.884 2.64 0 5.122 1.03 6.988 2.898a9.825 9.825 0 012.893 6.994c-.003 5.45-4.437 9.884-9.885 9.884m8.413-18.297A11.815 11.815 0 0012.05 0C5.495 0 .16 5.335.157 11.892c0 2.096.547 4.142 1.588 5.945L.057 24l6.305-1.654a11.882 11.882 0 005.683 1.448h.005c6.554 0 11.89-5.335 11.893-11.893a11.821 11.821 0 00-3.48-8.413z"/></svg>
+          Chat on WhatsApp
+        </a>
+
+        <div class="map-placeholder">
+          <span>📍</span>
+          <span>SITE Industrial Area, Karachi</span>
+        </div>
+      </div>
+
+      <div class="contact-form reveal reveal-delay-2">
+        <div class="form-row">
+          <div class="form-group">
+            <label>First Name</label>
+            <input type="text" placeholder="John">
+          </div>
+          <div class="form-group">
+            <label>Last Name</label>
+            <input type="text" placeholder="Smith">
+          </div>
+        </div>
+        <div class="form-group">
+          <label>Company Name</label>
+          <input type="text" placeholder="Precision Manufacturing Ltd.">
+        </div>
+        <div class="form-group">
+          <label>Email Address</label>
+          <input type="email" placeholder="john@company.com">
+        </div>
+        <div class="form-row">
+          <div class="form-group">
+            <label>Phone Number</label>
+            <input type="tel" placeholder="+92 300 123 4567">
+          </div>
+          <div class="form-group">
+            <label>Country</label>
+            <select>
+              <option>Pakistan</option>
+              <option>Saudi Arabia</option>
+              <option>UAE</option>
+              <option>Bangladesh</option>
+              <option>Other</option>
+            </select>
+          </div>
+        </div>
+        <div class="form-group">
+          <label>Machine of Interest</label>
+          <select>
+            <option>Select a machine category</option>
+            <option>CNC Milling Machine</option>
+            <option>CNC Turning Center</option>
+            <option>5-Axis Machining Center</option>
+            <option>Vertical Machining Center</option>
+            <option>Horizontal Machining Center</option>
+            <option>Automation / Robotic Solution</option>
+            <option>Smart Factory (NEXUS iQ)</option>
+          </select>
+        </div>
+        <div class="form-group">
+          <label>Project Details</label>
+          <textarea placeholder="Describe your production requirements, materials, volumes, and any specific accuracy or automation needs…"></textarea>
+        </div>
+        <button type="submit" class="btn-primary" style="width:100%;justify-content:center;">
+          <span>Send Inquiry</span>
+          <svg width="16" height="16" viewBox="0 0 16 16" fill="none"><path d="M3 8h10M9 4l4 4-4 4" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"/></svg>
+        </button>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- ─── FOOTER ─── -->
+<footer>
+  <div class="footer-grid">
+    <div class="footer-brand">
+      <a href="#" class="logo">
+        <div class="logo-mark"></div>
+        <div>
+          <span class="logo-text">NEXUS</span>
+          <span class="logo-sub">Precision Technology</span>
+        </div>
+      </a>
+      <p>Engineering the future of precision manufacturing since 1999. CNC machines, automation systems, and smart factory solutions trusted by manufacturers across 18 countries.</p>
+      <div class="social-links">
+        <a href="#" class="social-link" aria-label="LinkedIn">in</a>
+        <a href="#" class="social-link" aria-label="YouTube">▶</a>
+        <a href="#" class="social-link" aria-label="Twitter">𝕏</a>
+        <a href="#" class="social-link" aria-label="Instagram">📷</a>
+      </div>
+    </div>
+
+    <div class="footer-col">
+      <h4>Products</h4>
+      <ul>
+        <li><a href="#">CNC Milling Machines</a></li>
+        <li><a href="#">CNC Turning Centers</a></li>
+        <li><a href="#">5-Axis Centers</a></li>
+        <li><a href="#">VMC / HMC</a></li>
+        <li><a href="#">Automation Systems</a></li>
+        <li><a href="#">Robotic Solutions</a></li>
+        <li><a href="#">Smart Factory (iQ)</a></li>
+      </ul>
+    </div>
+
+    <div class="footer-col">
+      <h4>Services</h4>
+      <ul>
+        <li><a href="#">Installation & Setup</a></li>
+        <li><a href="#">Operator Training</a></li>
+        <li><a href="#">Technical Support</a></li>
+        <li><a href="#">Spare Parts</a></li>
+        <li><a href="#">Retrofit & Upgrade</a></li>
+        <li><a href="#">Preventive Maintenance</a></li>
+        <li><a href="#">Financing Options</a></li>
+      </ul>
+    </div>
+
+    <div class="footer-col">
+      <h4>Company</h4>
+      <ul>
+        <li><a href="#">About NEXUS</a></li>
+        <li><a href="#">Leadership Team</a></li>
+        <li><a href="#">Case Studies</a></li>
+        <li><a href="#">Technology Partners</a></li>
+        <li><a href="#">Careers</a></li>
+        <li><a href="#news">Industry Insights</a></li>
+        <li><a href="#contact">Contact Us</a></li>
+      </ul>
+    </div>
+
+    <div class="footer-col">
+      <h4>Newsletter</h4>
+      <p style="font-size:0.8rem;color:var(--gray);line-height:1.7;margin-bottom:16px;">Get CNC technology insights and product updates delivered monthly.</p>
+      <div class="newsletter-form">
+        <input type="email" placeholder="your@email.com" aria-label="Email for newsletter">
+        <button type="submit">→</button>
+      </div>
+      <p style="font-size:0.7rem;color:var(--gray);margin-top:12px;font-family:var(--font-mono);">No spam. Unsubscribe anytime.</p>
+    </div>
+  </div>
+
+  <div class="footer-bottom">
+    <p>© 2025 NEXUS Precision Technology. All rights reserved.</p>
+    <div class="footer-bottom-links">
+      <a href="#">Privacy Policy</a>
+      <a href="#">Terms of Service</a>
+      <a href="#">Cookie Policy</a>
+      <a href="#">Sitemap</a>
+    </div>
+  </div>
+</footer>
+
+<script>
+  // ─── CURSOR GLOW ───
+  const cursorGlow = document.getElementById('cursorGlow');
+  document.addEventListener('mousemove', e => {
+    cursorGlow.style.left = e.clientX + 'px';
+    cursorGlow.style.top = e.clientY + 'px';
+  });
+
+  // ─── NAV SCROLL ───
+  const navbar = document.getElementById('navbar');
+  window.addEventListener('scroll', () => {
+    navbar.classList.toggle('scrolled', window.scrollY > 50);
+  });
+
+  // ─── HAMBURGER ───
+  const hamburger = document.getElementById('hamburger');
+  const mobileMenu = document.getElementById('mobileMenu');
+  hamburger.addEventListener('click', () => {
+    mobileMenu.classList.toggle('open');
+  });
+  mobileMenu.querySelectorAll('a').forEach(a => {
+    a.addEventListener('click', () => mobileMenu.classList.remove('open'));
+  });
+
+  // ─── PARTICLES ───
+  const particleContainer = document.getElementById('particles');
+  for (let i = 0; i < 40; i++) {
+    const p = document.createElement('div');
+    p.className = 'particle';
+    p.style.left = Math.random() * 100 + '%';
+    p.style.setProperty('--dur', (6 + Math.random() * 10) + 's');
+    p.style.setProperty('--drift', (Math.random() - 0.5) * 100 + 'px');
+    p.style.animationDelay = Math.random() * 10 + 's';
+    p.style.width = (1 + Math.random() * 2) + 'px';
+    p.style.height = p.style.width;
+    particleContainer.appendChild(p);
+  }
+
+  // ─── REVEAL ON SCROLL ───
+  const reveals = document.querySelectorAll('.reveal');
+  const revealObserver = new IntersectionObserver((entries) => {
+    entries.forEach(entry => {
+      if (entry.isIntersecting) {
+        entry.target.classList.add('visible');
+      }
+    });
+  }, { threshold: 0.1, rootMargin: '0px 0px -50px 0px' });
+
+  reveals.forEach(el => revealObserver.observe(el));
+
+  // ─── COUNTER ANIMATION ───
+  function animateCounter(el) {
+    const target = parseInt(el.dataset.target);
+    const suffix = el.dataset.suffix || '+';
+    const duration = 2000;
+    const start = performance.now();
+
+    function update(now) {
+      const elapsed = now - start;
+      const progress = Math.min(elapsed / duration, 1);
+      const ease = 1 - Math.pow(1 - progress, 3);
+      const current = Math.round(ease * target);
+      el.textContent = current.toLocaleString() + suffix;
+      if (progress < 1) requestAnimationFrame(update);
+    }
+    requestAnimationFrame(update);
+  }
+
+  const counterObserver = new IntersectionObserver((entries) => {
+    entries.forEach(entry => {
+      if (entry.isIntersecting && !entry.target.dataset.animated) {
+        entry.target.dataset.animated = 'true';
+        animateCounter(entry.target);
+      }
+    });
+  }, { threshold: 0.5 });
+
+  document.querySelectorAll('[data-target]').forEach(el => counterObserver.observe(el));
+
+  // ─── HERO STAT COUNTERS ───
+  document.querySelectorAll('.stat-num[data-target]').forEach(el => {
+    counterObserver.observe(el);
+  });
+
+  // ─── TIMELINE ACTIVE ───
+  const milestones = document.querySelectorAll('.milestone');
+  milestones.forEach((m, i) => {
+    setTimeout(() => m.classList.add('active'), i * 200);
+  });
+
+  // ─── SMOOTH NAV ───
+  document.querySelectorAll('a[href^="#"]').forEach(a => {
+    a.addEventListener('click', e => {
+      const target = document.querySelector(a.getAttribute('href'));
+      if (target) {
+        e.preventDefault();
+        target.scrollIntoView({ behavior: 'smooth', block: 'start' });
+      }
+    });
+  });
+
+  // ─── FORM SUBMIT ───
+  document.querySelector('.contact-form button[type="submit"]').addEventListener('click', (e) => {
+    e.preventDefault();
+    const btn = e.currentTarget;
+    btn.innerHTML = '<span>✓ Inquiry Sent — We\'ll respond within 2 hours</span>';
+    btn.style.background = 'linear-gradient(135deg, #16a34a, #15803d)';
+    btn.style.boxShadow = '0 0 40px rgba(22,163,74,0.4)';
+  });
+
+  // ─── INITIAL REVEAL ───
+  setTimeout(() => {
+    document.querySelectorAll('#hero .reveal').forEach(el => el.classList.add('visible'));
+  }, 100);
+</script>
+</body>
+</html>
